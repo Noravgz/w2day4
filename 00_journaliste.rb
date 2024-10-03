@@ -55,17 +55,57 @@ twitter = ["@jcunniet","@PaulLampon","@Aziliz31","@ssoumier","@marionsouzeau","@
 
 
 def afficher_menu
-    puts "Veuillez choisir une option :"
-    puts "1. Nombre de handles dans la liste"
-    puts "2. Handle le plus court"
-    puts "3. Nombre de handles avec 5 caractères"
-    puts "4. Nombre de handles qui commencent par une majuscule"
-    puts "5. Trie la liste des handles par ordre alphabétique"
-    puts "6. Trie la liste des handles par taille"
-    puts "7. Calcule la position de l'email @epenser dans mon array"
-    puts "8. Trie la liste des handles par nombre de caractère"
-    puts "9. Quitter"
+  puts "Veuillez choisir une option :"
+  puts "1. Nombre de handles dans la liste"
+  puts "2. Handle le plus court"
+  puts "3. Nombre de handles avec 5 caractères"
+  puts "4. Nombre de handles qui commencent par une majuscule"
+  puts "5. Trie la liste des handles par ordre alphabétique"
+  puts "6. Trie la liste des handles par taille"
+  puts "7. Calcule la position de l'email @epenser dans mon array"
+  puts "8. Trie la liste des handles par nombre de caractère"
+  puts "9. Quitter"
+end
+
+def nombre_handle(twitter)
+  puts "Il y a #{twitter.size} handles dans cette liste."
+end
+
+# Ajoute ici les autres méthodes comme `lepluscourt`, `caractere_5`, etc.
+
+# Exemple de liste
+twitter = ["@jcunniet", "@PaulLampon", "@Aziliz31", "@ssoumier", "@marionsouzeau", "@gaellombart", "@bendarag", "@AurelieLebelle", "@julienduffe", "@thomaspoupeau", "@LilyRossignol"]
+
+# Boucle principale
+loop do
+  afficher_menu
+  choix = gets.chomp.to_i
+  
+  case choix
+  when 1
+    nombre_handle(twitter)
+  when 2
+    lepluscourt(twitter)
+  when 3
+    caractere_5(twitter)
+  when 4
+    majuscule(twitter)
+  when 5
+    liste_ordre(twitter)
+  when 6
+    liste_tailles_handles(twitter)
+  when 7
+    position_handle(twitter)
+  when 8
+    liste_tailles_caractere(twitter)
+  when 9
+    puts "Au revoir !"
+    break # Ici, `break` est dans la boucle et fonctionne correctement
+  else
+    puts "Option invalide, veuillez réessayer."
   end
+end
+
   
   choix = gets.chomp.to_i
 
@@ -100,50 +140,3 @@ def afficher_menu
 def liste_tailles_caractère(twitter)
     twitter.sort_by { |handle| -handle.length }
 end
-
-
-  loop do
-    afficher_menu
-    choix = gets.chomp.to_i
-  
-    case choix
-    when 1
-      puts "Il y a #{nombre_handle(twitter)} handles dans la liste."
-    when 2
-      puts "Le handle le plus court est #{le_plus_court(twitter)}."
-    when 3
-      puts "Il y a #{caractere_5(twitter)} handles avec 5 caractères."
-    when 4
-      puts "Il y a #{majuscule(twitter)} handles qui commencent par une majuscule."
-    when 5
-        puts "Handles triés par ordre alphabétique : #{liste_ordre(twitter)}"
-    when 6
-        puts "Voici la taille des handles triés du plus petit au plus grand : #{liste_tailles_handles(twitter)}"
-    when 7
-        email = "@epenser"
-        position = position_handle(twitter) 
-        if position.nil?
-            puts "Le handle #{email} n'est pas trouvé dans la liste."
-          else
-            puts "Le handle #{email} se trouve à la position #{position}."
-          end
-    when 8
-        puts "Voici la taille des handles triés du plus petit au plus grand : #{liste_tailles_caractère(twitter)}"
-    when 9
-        puts "Au revoir!"
-      break
-    else
-      puts "Choix invalide. Veuillez réessayer."
-    end
-  end
-  
-
-
-nombre_handle(twitter)
-lepluscourt(twitter)
-caractere_5(twitter)
-majuscule(twitter)
-liste_ordre(twitter)
-liste_tailles_handles(twitter)
-position_handle(twitter, "@epenser")
-liste_tailles_caractère(twitter)
